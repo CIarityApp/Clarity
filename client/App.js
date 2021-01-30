@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import * as React from './components/node_modules/react';
+import { Text, View, StyleSheet } from './components/node_modules/react-native';
 
 // You can import from local files
 import AssetExample from './components/AssetExample';
