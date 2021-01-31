@@ -44,7 +44,7 @@ export default function UserScreen() {
           <Text style={styles.text}>
           Personal Code:
           {'\n'}
-          <Text style={{fontStyle:'italic'}}>ZYXW</Text>
+          <Text style={{fontFamily: 'montserrat-italic'}}>ZYXW</Text>
           </Text>
           <TouchableHighlight onPress={onShare}>
             <View>
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     fontSize: 20,
     fontWeight: 'bold',
-    fontFamily: 'Montserrat',
+    fontFamily: 'montserrat-bold',
   },
   separator: {
     marginVertical: 30,
@@ -118,6 +118,6 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     justifyContent: 'center',
     alignItems: 'center',
-    fontFamily: 'Montserrat',
+    fontFamily: 'montserrat-regular',
   }
 });

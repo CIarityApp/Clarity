@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 20,
     fontWeight: 'bold',
-    fontFamily: 'Montserrat',
+    fontFamily: 'montserrat-bold',
   },
   separator: {
     marginVertical: 30,

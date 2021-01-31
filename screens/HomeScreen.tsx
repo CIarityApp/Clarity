@@ -10,9 +10,9 @@ import { View } from '../components/Themed';
 
 export default function HomeScreen({ navigation }) {
 
-  const [value, onChangeText] = React.useState('ABCD');
+  
+  const [value, onChangeText] = React.useState('');
 
- 
   
   function login() {
     axios({
@@ -35,7 +35,7 @@ export default function HomeScreen({ navigation }) {
       
       <Image source={require('../assets/images/logo.png')} />
       
-      <TextInput style={styles.text} value={value} onChangeText={text => onChangeText(text)}></TextInput>
+      <TextInput style={styles.text} placeholder={'Code'} value={value} onChangeText={text => onChangeText(text)}></TextInput>
       <View style={styles.space} />
       <TouchableOpacity
         style={styles.buttonContainer}
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-    fontFamily: 'Montserrat',
+    fontFamily: 'montserrat-regular',
   },
   space: {
     width: 20, // or whatever size you need
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     borderWidth: 3, 
     paddingHorizontal: 45, 
     fontSize: 24,
-    fontFamily: 'Montserrat',
+    fontFamily: 'montserrat-regular',
   },
   buttonContainer: {
     elevation: 8,
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     alignSelf: "center",
-    fontFamily: 'Montserrat',
+    fontFamily: 'montserrat-regular',
   },
   separator: {
     marginVertical: 30,

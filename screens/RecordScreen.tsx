@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
     paddingBottom: 10,
     fontSize:24,
-    fontFamily: 'Montserrat',
+    fontFamily: 'montserrat-bold',
 
   },
 
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   text: {
     paddingTop: 10,
     fontSize: 20,
-    fontFamily: 'Montserrat',
+    fontFamily: 'montserrat-regular',
   }, 
 
   imagestyle: {
