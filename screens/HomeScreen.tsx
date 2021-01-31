@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Image, Button, Alert, TouchableOpacity } from 'react-native';
+import { StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 
 import { Text, View } from '../components/Themed';
@@ -24,9 +24,10 @@ export default function HomeScreen({ navigation }) {
       <Text style={styles.title}>Hi, Name</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <Image source={require('../assets/images/logo.png')} />
+      <TextInput style={{color: 'white'}} value={value} onChangeText={text => onChangeText(text)}></TextInput>
       <TouchableOpacity
         style={styles.buttonContainer}
-        onPress={() => Alert.alert('This will lead to the record screen')}
+        onPress={login}
       >
         <Text style={styles.buttonText}>Call</Text>
       </TouchableOpacity>
