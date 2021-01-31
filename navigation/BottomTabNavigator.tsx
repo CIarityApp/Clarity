@@ -7,7 +7,8 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import HomeScreen from '../screens/HomeScreen';
 import UploadScreen from '../screens/UploadScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import UserScreen from '../screens/UserScreen';
+import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -28,6 +29,13 @@ export default function BottomTabNavigator() {
       <BottomTab.Screen
         name="Upload"
         component={TabTwoNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <Ionicons name="cloud-upload" size={24} color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="User"
+        component={TabThreeNavigator}
         options={{
           tabBarIcon: ({ color }) => <Ionicons name="cloud-upload" size={24} color={color} />,
         }}
@@ -69,5 +77,19 @@ function TabTwoNavigator() {
         options={{ headerTitle: 'Upload a File' }}
       />
     </TabTwoStack.Navigator>
+  );
+}
+
+const TabThreeStack = createStackNavigator<TabThreeParamList>();
+
+function TabThreeNavigator() {
+  return (
+    <TabThreeStack.Navigator>
+      <TabThreeStack.Screen
+        name="UserScreen"
+        component={UserScreen}
+        options={{ headerTitle: 'Account Information' }}
+      />
+    </TabThreeStack.Navigator>
   );
 }

@@ -6,7 +6,7 @@ import { Text, View } from '../components/Themed';
 
 export default function HomeScreen({ navigation }) {
 
-  const [value, onChangeText] = React.useState('Useless Placeholder');
+  const [value, onChangeText] = React.useState('ABCD');
 
   function login() {
     axios({

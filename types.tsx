@@ -16,3 +16,7 @@ export type TabOneParamList = {
 export type TabTwoParamList = {
   UploadScreen: undefined;
 };
+
+export type TabThreeParamList = {
+  UploadScreen: undefined;
+};
