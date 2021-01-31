@@ -1,6 +1,9 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { StyleSheet, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Text } from 'react-native';
 import { Header } from '@react-navigation/stack';
+import * as Font from 'expo-font';
+import AppLoading from 'expo-app-loading';
 import axios from 'axios';
 
 
@@ -8,11 +11,28 @@ import axios from 'axios';
 import { View } from '../components/Themed';
 
 
+const fetchFonts = () => {
+  return Font.loadAsync({
+  'montserrat-regular': require('../assets/fonts/Montserrat-Regular.ttf')
+  });
+  };
+
 export default function HomeScreen({ navigation }) {
 
+  const [dataLoaded, setDataLoaded] = useState(false); 
+  
   const [value, onChangeText] = React.useState('ABCD');
 
- 
+  
+  if (!dataLoaded) {
+    return(
+      <AppLoading
+        startAsync = {fetchFonts}
+        onFinish = {() => setDataLoaded(true)} 
+        onError={console.warn}
+      />
+    );
+  }
   
   function login() {
     axios({
@@ -61,7 +81,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-    fontFamily: 'Montserrat',
+    fontFamily: 'montserrat-regular',
   },
   space: {
     width: 20, // or whatever size you need
@@ -74,7 +94,7 @@ const styles = StyleSheet.create({
     borderWidth: 3, 
     paddingHorizontal: 45, 
     fontSize: 24,
-    fontFamily: 'Montserrat',
+    fontFamily: 'montserrat-regular',
   },
   buttonContainer: {
     elevation: 8,
@@ -88,7 +108,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     alignSelf: "center",
-    fontFamily: 'Montserrat',
+    fontFamily: 'montserrat-regular',
   },
   separator: {
     marginVertical: 30,
