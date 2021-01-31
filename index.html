@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+    </head>
+    <body>
+
+
+        <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-analytics.js"></script>
+
+        <script>
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            var firebaseConfig = {
+                apiKey: "AIzaSyB0iWBPIONesIUF1V0-8pA0DPfSakZUujM",
+                authDomain: "clarity-81765.firebaseapp.com",
+                databaseURL: "https://clarity-81765-default-rtdb.firebaseio.com",
+                projectId: "clarity-81765",
+                storageBucket: "clarity-81765.appspot.com",
+                messagingSenderId: "938668156310",
+                appId: "1:938668156310:web:635c922c832e0d84d3e9b7",
+                measurementId: "G-5YJVP90BGC"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+
+
+            var database = firebase.database();
+
+            // idk if this is right tbh
+            // function writeUserData(userId, name, email, imageUrl) {
+            //     firebase.database().ref('users/' + userId).set({
+            //         username: name,
+            //         email: email,
+            //         profile_picture : imageUrl
+            //     });
+            // }
+
+            // writeUserData("test1", "test2", "test3", "test4");
+
+        </script>
+
+    </body>
+
+</html>

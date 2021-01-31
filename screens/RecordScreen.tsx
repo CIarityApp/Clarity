@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { TouchableHighlight, Button, StyleSheet, Image } from 'react-native';
 import { Audio } from 'expo-av';
+import axios from 'axios';
 
 import { Text, View } from '../components/Themed';
-
-
-
 
 export default function RecordScreen({ navigation }) {
 
@@ -38,9 +36,32 @@ export default function RecordScreen({ navigation }) {
     console.log("Stop Recording")
     await recording!.stopAndUnloadAsync()
     const uri = recording!.getURI()
-    const { sound } = await Audio.Sound.createAsync({
-      uri: uri!
-    }, { shouldPlay: true })
+
+    let formData = new FormData()
+    let file = {
+      uri: uri,
+      name: 'mixed.caf',
+      type: 'audio/caf',
+    }
+    formData.append('file', file)
+
+    axios({
+      url: "https://clarityrooms.herokuapp.com/upload",
+      method: "post",
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+      data: formData
+    }).then( async (response) => {
+      console.log(response.data)
+      console.log('Request thru')
+      const { sound } = await Audio.Sound.createAsync({
+        uri: uri!
+      }, { shouldPlay: true })
+    }).catch( (err) => {
+      console.log(err)
+    })
+
     setRecording(undefined)
   }
 

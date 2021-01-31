@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { StyleSheet, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Text} from 'react-native';
-import { Header } from 'react-navigation-stack';
+import { StyleSheet, Image, TextInput, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+import { Header } from '@react-navigation/stack';
 import axios from 'axios';
 
 
@@ -26,7 +26,7 @@ export default function HomeScreen({ navigation }) {
   }
 
   return (
-    <KeyboardAvoidingView keyboardVerticalOffset = {Header.HEIGHT + 24} style={{flex: 1}}behavior="padding">
+    <KeyboardAvoidingView keyboardVerticalOffset = {100} style={{flex: 1}}behavior="padding">
 
    
     <View style={styles.container}>
