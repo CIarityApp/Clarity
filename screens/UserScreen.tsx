@@ -12,7 +12,7 @@ export default function UserScreen() {
       <Text style={styles.text}>
         Personal Code:
         {'\n'}
-        ZYXW
+        <Text style={{fontStyle:'italic'}}>ZYXW</Text>
         {'\n'}
         {'\n'}
         Share
