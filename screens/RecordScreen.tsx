@@ -5,12 +5,13 @@ import axios from 'axios';
 import * as firebase from 'firebase';
 
 import { Text, View } from '../components/Themed';
+import { tsConstructorType } from '@babel/types';
 
 export default function RecordScreen({ navigation }) {
 
   const [recording, setRecording] = React.useState<Audio.Recording>()
   const [sound, setSound] = React.useState<Boolean>()
-  let incoming = false
+  const [mounted, setMounted] = React.useState<Boolean>(false)
 
   async function startRecord() {
     try {
@@ -36,6 +37,10 @@ export default function RecordScreen({ navigation }) {
 
   async function stopRecord() {
     // Stop recording
+    if(!mounted) {
+      setMounted(true)
+      initSoundListener(69)
+    }
     console.log("Stop Recording")
     await recording!.stopAndUnloadAsync()
     const uri = recording!.getURI()
@@ -58,7 +63,6 @@ export default function RecordScreen({ navigation }) {
     }).then( async (response) => {
       console.log('Request thru')
       console.log(response.data)
-      initSoundListener(response.data.name)
     }).catch( (err) => {
       console.log(err)
     })
@@ -67,8 +71,10 @@ export default function RecordScreen({ navigation }) {
   }
 
   function initSoundListener(soundId) {
-    firebase.database().ref('files/' + soundId).on('value', async (snapshot) => {
+    console.log('is this thing on')
+    firebase.database().ref('files').on('value', async (snapshot) => {
       setSound(true)
+      console.log(snapshot.val())
       const { sound } = await Audio.Sound.createAsync({
         uri: await firebase.storage().refFromURL('gs://clarity-81765.appspot.com/' + snapshot.val().next).getDownloadURL()
       })
@@ -80,6 +86,8 @@ export default function RecordScreen({ navigation }) {
       await sound.playAsync()
     })
   }
+
+  
 
   return (
     <View style={styles.container}>
