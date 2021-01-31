@@ -4,7 +4,7 @@ import { Audio } from 'expo-av';
 
 import { Text, View } from '../components/Themed';
 
-export default function TabOneScreen() {
+export default function RecordScreen() {
 
   const [recording, setRecording] = React.useState<Audio.Recording>()
 
