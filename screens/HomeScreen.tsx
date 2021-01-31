@@ -1,18 +1,26 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Image, Button, Alert, TouchableOpacity } from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
+      <Text style={styles.title}>Hi, Name</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/HomeScreen.tsx" />
+      <Image source={require('../assets/images/logo.png')} />
+      <TouchableOpacity
+        style={styles.buttonContainer}
+        onPress={() => Alert.alert('This will lead to the record screen')}
+      >
+        <Text style={styles.buttonText}>Call</Text>
+      </TouchableOpacity>
     </View>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -23,6 +31,19 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  buttonContainer: {
+    elevation: 8,
+    backgroundColor: "#2a7fba",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 60
+  },
+  buttonText: {
+    fontSize: 24,
+    color: "#fff",
+    fontWeight: "bold",
+    alignSelf: "center",
   },
   separator: {
     marginVertical: 30,
