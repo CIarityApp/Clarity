@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { TouchableHighlight, Button, StyleSheet } from 'react-native';
+import { TouchableHighlight, Button, StyleSheet, Image } from 'react-native';
 import { Audio } from 'expo-av';
+import axios from 'axios';
 
 import { Text, View } from '../components/Themed';
 
@@ -35,17 +36,45 @@ export default function RecordScreen({ navigation }) {
     console.log("Stop Recording")
     await recording!.stopAndUnloadAsync()
     const uri = recording!.getURI()
-    const { sound } = await Audio.Sound.createAsync({
-      uri: uri!
-    }, { shouldPlay: true })
+
+    let formData = new FormData()
+    let file = {
+      uri: uri,
+      name: 'mixed.caf',
+      type: 'audio/caf',
+    }
+    formData.append('file', file)
+
+    axios({
+      url: "https://clarityrooms.herokuapp.com/upload",
+      method: "post",
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+      data: formData
+    }).then( async (response) => {
+      console.log(response.data)
+      console.log('Request thru')
+      const { sound } = await Audio.Sound.createAsync({
+        uri: uri!
+      }, { shouldPlay: true })
+    }).catch( (err) => {
+      console.log(err)
+    })
+
     setRecording(undefined)
   }
 
   return (
     <View style={styles.container}>
+      <Text style={styles.text2} >{"Incoming"}</Text>
+      <Image style={styles.gif} source={require('../assets/images/sound.gif')} />
+
+
       <TouchableHighlight onPressIn={startRecord} onPressOut={stopRecord}>
         <View style={styles.button}>
-          <Text>{ recording ? "Release to Stop" : "Hold to Record" }</Text>
+          <Image style={styles.imagestyle} source={require('../assets/images/mic-record.png')} />  
+          <Text style={styles.text} >{ recording ? "Release to Stop" : "Hold to Record" }</Text>
         </View>
       </TouchableHighlight>
       <Button title="Back to Home" onPress={() => navigation.navigate("Home")}> </Button>
@@ -59,10 +88,36 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button: {
+
+  
+  text2:{
+    marginTop: 50,
+    paddingBottom: 10,
+    fontSize:24,
+
+  },
+
+  gif:{
     marginBottom: 30,
+
+  },
+
+  text: {
+    paddingTop: 10,
+    fontSize: 24,
+  }, 
+
+  imagestyle: {
+    marginTop: 60,
+    width: 250,
+    height: 250,
+  },
+
+  button: {
+    paddingTop: 30,
+    marginBottom: 40,
     width: 260,
     alignItems: 'center',
-    backgroundColor: '#2196F3'
+    backgroundColor: 'white'
   }
 });

@@ -1,22 +1,30 @@
 import * as React from 'react';
-import { StyleSheet, Button } from 'react-native';
+import { StyleSheet, Button, Image} from 'react-native';
 
 import { Text, View, } from '../components/Themed';
 
-export default function UploadScreen( { navigation } ) {
+export default function SuccessScreen( { navigation } ) {
     
   
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Upload Tab</Text>
+      <Image style={styles.image} source={require('../assets/images/success.png')} />
+      <Text style={styles.title}>Success!</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
 
       <Button
-      title="Upload"
+      title="Download"
       onPress={() =>
-        navigation.navigate('Success', { name: 'Jane' })
+        navigation.navigate('Upload')
       }
-    />
+      />
+
+      <Button
+      title="Try Again"
+      onPress={() =>
+        navigation.navigate('Upload')
+      }
+      />
 
     </View>
   );
@@ -28,7 +36,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  image:{
+    width: 200,
+    height: 200,
+  },
+
   title: {
+    marginTop: 20,
     fontSize: 20,
     fontWeight: 'bold',
   },
