@@ -28,10 +28,13 @@ export default function UserScreen() {
       alert(error.message);
     }
   };
- 
+  
+  
 
   return (
+
     <View style={styles.container}>
+
       <Image style={styles.imageStyle} source={require('../assets/images/doctor.png')} />
       <Text style={styles.title}>Clary Tea</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
@@ -64,6 +67,16 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  setImage:{
+    width: 30,
+    height: 30,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0
   },
 
   imageStyle: {
