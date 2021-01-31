@@ -4,7 +4,6 @@ import { StyleSheet, Button } from 'react-native';
 import { Text, View, } from '../components/Themed';
 
 export default function UploadScreen( { navigation } ) {
-    
   
   return (
     <View style={styles.container}>
@@ -13,6 +12,7 @@ export default function UploadScreen( { navigation } ) {
 
       <Button
       title="Upload"
+      
       onPress={() =>
         navigation.navigate('Success', { name: 'Jane' })
       }
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat',
   },
   separator: {
     marginVertical: 30,

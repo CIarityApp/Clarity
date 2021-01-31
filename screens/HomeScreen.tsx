@@ -1,15 +1,18 @@
 import * as React from 'react';
-import { StyleSheet, Image, TextInput, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+import { StyleSheet, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Text} from 'react-native';
 import { Header } from 'react-navigation-stack';
 import axios from 'axios';
 
-import { Text, View } from '../components/Themed';
+
+
+import { View } from '../components/Themed';
 
 
 export default function HomeScreen({ navigation }) {
 
   const [value, onChangeText] = React.useState('ABCD');
 
+ 
   
   function login() {
     axios({
@@ -58,6 +61,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat',
   },
   space: {
     width: 20, // or whatever size you need
@@ -69,7 +73,8 @@ const styles = StyleSheet.create({
     borderColor: '#2a7fba', 
     borderWidth: 3, 
     paddingHorizontal: 45, 
-    fontSize: 24
+    fontSize: 24,
+    fontFamily: 'Montserrat',
   },
   buttonContainer: {
     elevation: 8,
@@ -83,6 +88,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     alignSelf: "center",
+    fontFamily: 'Montserrat',
   },
   separator: {
     marginVertical: 30,

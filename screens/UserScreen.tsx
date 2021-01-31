@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     fontSize: 20,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat',
   },
   separator: {
     marginVertical: 30,
@@ -117,5 +118,6 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     justifyContent: 'center',
     alignItems: 'center',
+    fontFamily: 'Montserrat',
   }
 });

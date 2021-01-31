@@ -18,12 +18,12 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint}}>
       <BottomTab.Screen
         name="Home"
         component={TabOneNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-home" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-home" color={color} />, 
         }}
       />
       <BottomTab.Screen
@@ -60,7 +60,8 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ headerTitle: 'Clarity' }}
+        options={{title: 'Clarity'}}
+        
       />
     </TabOneStack.Navigator>
   );
