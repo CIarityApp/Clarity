@@ -1,25 +1,63 @@
 import * as React from 'react';
-import { StyleSheet, Image, TextInput } from 'react-native';
+import { StyleSheet, Image, TouchableHighlight, Button } from 'react-native';
 
 import { Text, View } from '../components/Themed';
+import { Share } from "react-native"
+
+
+
+
+
 
 export default function UserScreen() {
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message: 'My Clarity Personal Code is ZYXW.',
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+ 
+
   return (
     <View style={styles.container}>
       <Image style={styles.imageStyle} source={require('../assets/images/doctor.png')} />
       <Text style={styles.title}>Clary Tea</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Text style={styles.text}>
-        Personal Code:
-        {'\n'}
-        <Text style={{fontStyle:'italic'}}>ZYXW</Text>
-        {'\n'}
-        {'\n'}
-        Share
-  </Text>
+
+      
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>
+          Personal Code:
+          {'\n'}
+          <Text style={{fontStyle:'italic'}}>ZYXW</Text>
+          </Text>
+          <TouchableHighlight onPress={onShare}>
+            <View>
+                <Image style={styles.image} source={require('../assets/images/share.png')} />
+                
+            </View>
+          </TouchableHighlight>
+          
+        </View>
+     
+
     </View>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -32,6 +70,20 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     
+  },
+
+  image:{
+    width: 30,
+    height: 30,
+  },
+
+  textContainer: {
+    elevation: 8,
+    borderRadius: 10,
+    paddingVertical: 20,
+    alignItems: 'center',
+    borderColor: 'black',
+    borderWidth: 3,
   },
 
   title: {
@@ -47,10 +99,10 @@ const styles = StyleSheet.create({
 
   text:{
     fontSize:20,
-    borderColor: 'black', 
-    borderWidth: 3,
     paddingHorizontal: 45, 
     textAlign: 'center',
-    paddingVertical: 10,
+    paddingBottom: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
