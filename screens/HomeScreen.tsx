@@ -24,7 +24,7 @@ export default function HomeScreen({ navigation }) {
       <Text style={styles.title}>Hi, Name</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <Image source={require('../assets/images/logo.png')} />
-      <TextInput style={{color: 'white'}} value={value} onChangeText={text => onChangeText(text)}></TextInput>
+      <TextInput style={{ color: 'white', height: 40, borderColor: 'gray', borderWidth: 1 }} value={value} onChangeText={text => onChangeText(text)}></TextInput>
       <TouchableOpacity
         style={styles.buttonContainer}
         onPress={login}
