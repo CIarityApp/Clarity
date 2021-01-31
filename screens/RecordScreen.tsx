@@ -2,6 +2,7 @@ import * as React from 'react';
 import { TouchableHighlight, Button, StyleSheet, Image } from 'react-native';
 import { Audio } from 'expo-av';
 import axios from 'axios';
+import * as firebase from 'firebase';
 
 import { Text, View } from '../components/Themed';
 
@@ -46,23 +47,30 @@ export default function RecordScreen({ navigation }) {
     formData.append('file', file)
 
     axios({
-      url: "https://clarityrooms.herokuapp.com/upload",
+      url: "https://clarityaudio.herokuapp.com/upload",
       method: "post",
       headers: {
         'Content-Type': 'multipart/form-data'
       },
       data: formData
     }).then( async (response) => {
-      console.log(response.data)
       console.log('Request thru')
-      const { sound } = await Audio.Sound.createAsync({
-        uri: uri!
-      }, { shouldPlay: true })
+      initSoundListener(response.data.name)
     }).catch( (err) => {
       console.log(err)
     })
 
     setRecording(undefined)
+  }
+
+  function initSoundListener(soundId) {
+    firebase.database().ref('files').on('value', async (snapshot) => {
+      console.log('penis')
+      console.log(snapshot.val())
+      const { sound } = await Audio.Sound.createAsync({
+        uri: await firebase.storage().refFromURL('gs://clarity-81765.appspot.com/' + snapshot.val().next).getDownloadURL()
+      }, { shouldPlay: true })
+    })
   }
 
   return (
