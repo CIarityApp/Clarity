@@ -60,7 +60,7 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{title: 'Clarity'}}
+        options={{title: 'Clarity', headerTitleStyle: {fontFamily: 'montserrat-bold'} }}
         
       />
     </TabOneStack.Navigator>
@@ -75,7 +75,7 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="UploadScreen"
         component={UploadScreen}
-        options={{ headerTitle: 'Upload a File' }}
+        options={{ headerTitle: 'Upload a File', headerTitleStyle: {fontFamily: 'montserrat-bold'} }}
       />
     </TabTwoStack.Navigator>
   );
@@ -89,7 +89,7 @@ function TabThreeNavigator() {
       <TabThreeStack.Screen
         name="UserScreen"
         component={UserScreen}
-        options={{ headerTitle: 'Account Information' }}
+        options={{ headerTitle: 'Account Information', headerTitleStyle: {fontFamily: 'montserrat-bold'} }}
       />
     </TabThreeStack.Navigator>
   );
