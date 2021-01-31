@@ -111,12 +111,13 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     fontSize:24,
     fontFamily: 'montserrat-bold',
-
+    textAlign: 'center'
   },
 
   gif:{
     marginBottom: 30,
-
+    width: 150,
+    height: 125
   },
 
   text: {
@@ -135,7 +136,6 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     marginBottom: 40,
     width: 260,
-    alignItems: 'center',
-    backgroundColor: 'white'
+    alignItems: 'center'
   }
 });
