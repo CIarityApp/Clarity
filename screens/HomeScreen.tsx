@@ -1,9 +1,6 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { StyleSheet, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Text } from 'react-native';
 import { Header } from '@react-navigation/stack';
-import * as Font from 'expo-font';
-import AppLoading from 'expo-app-loading';
 import axios from 'axios';
 
 
@@ -11,28 +8,11 @@ import axios from 'axios';
 import { View } from '../components/Themed';
 
 
-const fetchFonts = () => {
-  return Font.loadAsync({
-  'montserrat-regular': require('../assets/fonts/Montserrat-Regular.ttf')
-  });
-  };
-
 export default function HomeScreen({ navigation }) {
 
-  const [dataLoaded, setDataLoaded] = useState(false); 
   
-  const [value, onChangeText] = React.useState('ABCD');
+  const [value, onChangeText] = React.useState('');
 
-  
-  if (!dataLoaded) {
-    return(
-      <AppLoading
-        startAsync = {fetchFonts}
-        onFinish = {() => setDataLoaded(true)} 
-        onError={console.warn}
-      />
-    );
-  }
   
   function login() {
     axios({
@@ -55,7 +35,7 @@ export default function HomeScreen({ navigation }) {
       
       <Image source={require('../assets/images/logo.png')} />
       
-      <TextInput style={styles.text} value={value} onChangeText={text => onChangeText(text)}></TextInput>
+      <TextInput style={styles.text} placeholder={'Code'} value={value} onChangeText={text => onChangeText(text)}></TextInput>
       <View style={styles.space} />
       <TouchableOpacity
         style={styles.buttonContainer}
