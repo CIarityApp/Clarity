@@ -1,15 +1,30 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Button, TextInput } from 'react-native';
+import axios from 'axios';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
+
+  const [value, onChangeText] = React.useState('Useless Placeholder');
+
+  function login() {
+    console.log('asdf')
+    axios({
+      url: `https://clarityrooms.herokuapp.com/rooms/${value}`,
+      method: 'get'
+    }).then( (response) => {
+      if(response.data.receiver) navigation.navigate('Record')
+    }).catch ( (err) => {
+      console.log(err)
+    })
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/HomeScreen.tsx" />
+      <Text>Enter Code</Text>
+      <TextInput style={{ color: 'white', height: 40, borderColor: 'gray', borderWidth: 1 }} onChangeText={(text) => onChangeText(text)} value={value}></TextInput>
+      <Button title="Dial In" onPress={login}></Button>
     </View>
   );
 }

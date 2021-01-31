@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { TouchableHighlight, StyleSheet } from 'react-native';
+import { TouchableHighlight, Button, StyleSheet } from 'react-native';
 import { Audio } from 'expo-av';
 
 import { Text, View } from '../components/Themed';
 
-export default function RecordScreen() {
+export default function RecordScreen({ navigation }) {
 
   const [recording, setRecording] = React.useState<Audio.Recording>()
 
@@ -48,6 +48,7 @@ export default function RecordScreen() {
           <Text>{ recording ? "Release to Stop" : "Hold to Record" }</Text>
         </View>
       </TouchableHighlight>
+      <Button title="Back to Home" onPress={() => navigation.navigate("Home")}> </Button>
     </View>
   );
 }
