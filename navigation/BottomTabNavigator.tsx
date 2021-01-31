@@ -37,7 +37,7 @@ export default function BottomTabNavigator() {
         name="User"
         component={TabThreeNavigator}
         options={{
-          tabBarIcon: ({ color }) => <Ionicons name="cloud-upload" size={24} color={color} />,
+          tabBarIcon: ({ color }) => <Ionicons name="person-circle" size={24} color={color} />,
         }}
       />
     </BottomTab.Navigator>
