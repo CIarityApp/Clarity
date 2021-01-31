@@ -9,6 +9,8 @@ import { Text, View } from '../components/Themed';
 export default function RecordScreen({ navigation }) {
 
   const [recording, setRecording] = React.useState<Audio.Recording>()
+  const [sound, setSound] = React.useState<Boolean>()
+  let incoming = false
 
   async function startRecord() {
     try {
@@ -55,6 +57,7 @@ export default function RecordScreen({ navigation }) {
       data: formData
     }).then( async (response) => {
       console.log('Request thru')
+      console.log(response.data)
       initSoundListener(response.data.name)
     }).catch( (err) => {
       console.log(err)
@@ -64,19 +67,24 @@ export default function RecordScreen({ navigation }) {
   }
 
   function initSoundListener(soundId) {
-    firebase.database().ref('files').on('value', async (snapshot) => {
-      console.log('penis')
-      console.log(snapshot.val())
+    firebase.database().ref('files/' + soundId).on('value', async (snapshot) => {
+      setSound(true)
       const { sound } = await Audio.Sound.createAsync({
         uri: await firebase.storage().refFromURL('gs://clarity-81765.appspot.com/' + snapshot.val().next).getDownloadURL()
-      }, { shouldPlay: true })
+      })
+      sound.setOnPlaybackStatusUpdate( (status) => {
+        if(status.didJustFinish === true) {
+          setSound(false)
+        }
+      })
+      await sound.playAsync()
     })
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text2} >{"Incoming"}</Text>
-      <Image style={styles.gif} source={require('../assets/images/sound.gif')} />
+      {sound ? (<View><Text style={styles.text2} >{"Incoming"}</Text><Image style={styles.gif} source={require('../assets/images/sound.gif')} />
+      </View>) : null}
 
 
       <TouchableHighlight onPressIn={startRecord} onPressOut={stopRecord}>
